@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Intro_Helicopter_Physics/Scenes/Development/Helicop_Physics.unity
+    path: Assets/Intro_Heli_Physics/Scenes/Development/Helicop_Physics.unity
     guid: 56c016bfd5e23274d964fd2977479ada
   m_configObjects: {}
