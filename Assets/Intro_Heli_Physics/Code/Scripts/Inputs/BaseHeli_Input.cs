@@ -7,6 +7,9 @@ public class BaseHeli_Input : MonoBehaviour
     #region Variable
     private float vertical;
     private float horizontal;
+    private float throttle;
+    private float collective;
+    private float pedal;
     #endregion
 
     [SerializeField] private GameInput gameInput;
@@ -17,18 +20,35 @@ public class BaseHeli_Input : MonoBehaviour
 
     protected virtual void HandleInput()
     {
-        Vector2 inputVector = gameInput.GetMovementVectorNormalized();
     }
 
-    public float VerticalInput()
+    protected float VerticalInputValue()
     {
         vertical = gameInput.GetMovementVectorNormalized().y;
         return vertical;
     }
-    public float HorizontalInput()
+    protected float HorizontalInputValue()
     {
         horizontal = gameInput.GetMovementVectorNormalized().x;
         return horizontal;
+    }
+
+    protected float ThrottleInputValue()
+    {
+        throttle = gameInput.GetThrottleVectorNormalized().x;
+        return throttle;
+    }
+
+    protected float CollectiveInputValue()
+    {
+        collective = gameInput.GetCollectiveVectorNormalized().y;
+        return collective;
+    }
+
+    protected float PedalInputValue()
+    {
+        pedal = gameInput.GetPedalVectorNormalized().x;
+        return pedal;
     }
 
     public GameInput GetGameInput()

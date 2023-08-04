@@ -7,10 +7,10 @@ public class KeyboardHeli_Input : BaseHeli_Input
     #region Variable
     [Header("HeliCopter KeyBoard Inputs Value")]
     [Space(10)]
-    [SerializeField] private float throttleInput = 0f;
-    [SerializeField] private float collectiveInput = 0f;
-    [SerializeField] private Vector2 cyclicInput = Vector2.zero;
-    [SerializeField] private float pedalInput = 0f;
+    [HideInInspector][SerializeField] private float throttleInput = 0f;
+    [HideInInspector][SerializeField] private float collectiveInput = 0f;
+    [HideInInspector][SerializeField] private Vector2 cyclicInput = Vector2.zero;
+    [HideInInspector][SerializeField] private float pedalInput = 0f;
     #endregion
 
     #region Properties
@@ -23,8 +23,6 @@ public class KeyboardHeli_Input : BaseHeli_Input
     protected override void HandleInput()
     {
         base.HandleInput();
-        //throttleInput = GetGameInput().GetMovementVectorNormalized().y;
-        //pedalInput = GetGameInput().GetMovementVectorNormalized().x;
 
         HandleThrottle();
         HandleCollective();
@@ -32,12 +30,21 @@ public class KeyboardHeli_Input : BaseHeli_Input
         HandlePedal();
     }
 
-    private void HandleThrottle() { }
-    private void HandleCollective() { }
+    private void HandleThrottle() 
+    {
+        throttleInput = ThrottleInputValue();
+    }
+    private void HandleCollective() 
+    {
+        collectiveInput = CollectiveInputValue();
+    }
     private void HandleCyclic() 
     {
-        cyclicInput.y = VerticalInput();
-        cyclicInput.x = HorizontalInput();
+        cyclicInput.y = VerticalInputValue();
+        cyclicInput.x = HorizontalInputValue();
     }
-    private void HandlePedal() { }
+    private void HandlePedal() 
+    {
+        pedalInput = PedalInputValue();
+    }
 }

@@ -14,7 +14,30 @@ public class GameInput : MonoBehaviour
     public Vector2 GetMovementVectorNormalized()
     {
         Vector2 inputVector = inputActions.Player.Move.ReadValue<Vector2>();
-        inputVector=inputVector.normalized;
+        inputVector = inputVector.normalized;
         return inputVector;
+    }
+
+    public Vector2 GetThrottleVectorNormalized() 
+    {
+        Vector2 inputVector = inputActions.Player.Throttle.ReadValue<Vector2>();
+        return inputVector;
+    }
+
+    public Vector2 GetCollectiveVectorNormalized()
+    {
+        Vector2 inputVector = inputActions.Player.Collective.ReadValue<Vector2>();
+        return inputVector;
+    }
+
+    public Vector2 GetPedalVectorNormalized()
+    {
+        Vector2 inputVector = inputActions.Player.Pedal.ReadValue<Vector2>();
+        return inputVector;
+    }
+
+    private void OnDisable()
+    {
+        inputActions.Player.Disable();
     }
 }
