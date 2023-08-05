@@ -14,10 +14,14 @@ public class KeyboardHeli_Input : BaseHeli_Input
     #endregion
 
     #region Properties
-    public float ThrottleInput { get { return throttleInput; }}
-    public float CollectiveInput { get { return collectiveInput; } }
-    public Vector2 CyclicInput { get { return cyclicInput; } }
-    public float PedalInput { get { return pedalInput; } }
+    public float ThrottleInput { get { return throttleInput; } private set { } }
+    public float CollectiveInput { get { return collectiveInput; } private set { } }
+    public Vector2 CyclicInput { get { return cyclicInput; } private set { } }
+    public float PedalInput { get { return pedalInput; } private set { } }
+
+
+    private float stickyThrottle;
+    public float StickyThrottle { get { return stickyThrottle; } private set { } }
     #endregion
 
     protected override void HandleInput()
@@ -33,6 +37,7 @@ public class KeyboardHeli_Input : BaseHeli_Input
     private void HandleThrottle() 
     {
         throttleInput = ThrottleInputValue();
+        
     }
     private void HandleCollective() 
     {
@@ -47,4 +52,14 @@ public class KeyboardHeli_Input : BaseHeli_Input
     {
         pedalInput = PedalInputValue();
     }
+
+
+    ////utility function 
+    //private void HandleStickyThrottle()
+    //{
+    //    stickyThrottle += throttleInput;
+    //    Mathf.Clamp01(stickyThrottle);
+
+    //    Debug.Log("Sticky Throttle" + stickyThrottle);
+    //}
 }
