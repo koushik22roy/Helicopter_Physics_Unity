@@ -14,7 +14,14 @@ public class Heli_Controllers : Base_RbControllers
     [SerializeField] private Heli_Rotors_Controller rotors_Controller;
 
     private Input_Controllers input;
+    private Heli_Characteristics heli_Characteristics;
     #endregion
+
+    public override void Start()
+    {
+        base.Start();
+        heli_Characteristics = GetComponent<Heli_Characteristics>();
+    }
 
     protected override void HandlePhysics()
     {
@@ -30,11 +37,20 @@ public class Heli_Controllers : Base_RbControllers
 
     protected virtual void HandleEngine() 
     { 
-        foreach(Heli_Engine engine in engines)
-        {
-            engine.UpdateEngine(input.ThrottleInput);
+        //foreach(var engine in engines)
+        //{
+        //    engine.UpdateEngine(input.ThrottleInput);
 
-            float finalPower = engine.CurrentHP;
+        //    //float finalPower = engine.CurrentHP;
+        //}
+
+        for(int i = 0; i < engines.Count; i++)
+        {
+            engines[i].UpdateEngine(input.StickyThrottle);
+            //Debug.Log("STICKY THROTTLE " + input.StickyThrottle);
+            float finalPower = engines[i].CurrentHP;
+
+            //Debug.Log("Final Power"+finalPower);
         }
     }
     protected virtual void HandleRotors() 
@@ -42,9 +58,14 @@ public class Heli_Controllers : Base_RbControllers
         if (rotors_Controller && engines.Count>0)
         {
             rotors_Controller.UpdateRotors(input, engines[0].CurrentRPM);
+            //Debug.LogError("Current RPM" + engines[0].CurrentRPM);
         }
     }
-    protected virtual void HandleCharacteristics() { }
-
-
+    protected virtual void HandleCharacteristics() 
+    {
+        if (heli_Characteristics)
+        {
+            heli_Characteristics.UpdateCharacteristics(rb,input);
+        }
+    }
 }

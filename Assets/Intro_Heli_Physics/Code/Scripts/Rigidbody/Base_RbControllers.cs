@@ -18,7 +18,7 @@ public class Base_RbControllers : MonoBehaviour
     protected float weight;
     #endregion
 
-    private void Start()
+    public virtual void Start()
     {
         float finalKg = weightInLbs * lbsToKg;
         weight = finalKg;

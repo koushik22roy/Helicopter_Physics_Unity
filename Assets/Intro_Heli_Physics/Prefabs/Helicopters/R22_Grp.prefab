@@ -3957,7 +3957,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8281259550086164654
 Transform:
   m_ObjectHideFlags: 0
@@ -4459,6 +4459,7 @@ MonoBehaviour:
   lRotor: {fileID: 4288886573927991603}
   rRotor: {fileID: 2742418438724654494}
   maxPitch: 45
+  rotationSpeedModifier: 1.5
 --- !u!114 &8876017693994507912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4471,6 +4472,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e09e44bd4f1336742b4cdd5a0d308740, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxDPS: 323
+  blades:
+  - {fileID: 4667038932460962445}
+  - {fileID: 406193125920882404}
+  blur: {fileID: 6856288083328722111}
+  blurTex:
+  - {fileID: 2800000, guid: ede47a5d9060c2e44ae81bf25fd55888, type: 3}
+  - {fileID: 2800000, guid: a33fa54fa2c29444cbf3cc3dd5cb3166, type: 3}
+  - {fileID: 2800000, guid: 941e948fa8f56e448ac4011f490b505c, type: 3}
+  - {fileID: 2800000, guid: 1f36a2a1b29d29e48a876b9e18fecd23, type: 3}
+  - {fileID: 2800000, guid: 8105f6dc01fa4564c9865e059de2ebb7, type: 3}
+  - {fileID: 2800000, guid: 117df4248da699646afbc6b0a4d4cc1c, type: 3}
+  - {fileID: 2800000, guid: de88b9f4a027c374693d74be191bbbdf, type: 3}
+  - {fileID: 2800000, guid: 5d955152a99f2fb4ba6426b366bffc1d, type: 3}
+  - {fileID: 2800000, guid: 249c9b0a3d354ab438f82bf79a2a35e9, type: 3}
+  - {fileID: 2800000, guid: ecdd26f5fba60434fa6cdaa6ef1a7392, type: 3}
+  blurMat: {fileID: 2100000, guid: 9dbc2711e6a5f304fa05f8b1820ce3a0, type: 2}
+  blurGeo: {fileID: 6856288083328722111}
 --- !u!1 &4788428546287111216
 GameObject:
   m_ObjectHideFlags: 0
@@ -5047,9 +5066,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1f571115f899c3468d335b2f7e71a50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 130
+  maxHP: 140
   maxRPM: 2700
-  powerDelay: 2
+  powerDelay: 0.5
   powerCurve:
     serializedVersion: 2
     m_Curve:
@@ -5470,6 +5489,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e09e44bd4f1336742b4cdd5a0d308740, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxDPS: 323
+  blades:
+  - {fileID: 5522209469391406124}
+  - {fileID: 9019495584590667497}
+  blur: {fileID: 4292857513453309517}
+  blurTex:
+  - {fileID: 2800000, guid: 1295ac7382ca4cf4899b0328075c797a, type: 3}
+  - {fileID: 2800000, guid: 63b57964a8c3d8f48a7564650f6678a8, type: 3}
+  - {fileID: 2800000, guid: 906434300dcf3b349a3fc433e71bd77d, type: 3}
+  - {fileID: 2800000, guid: e8e30b930ef935344a380405f1048fc3, type: 3}
+  - {fileID: 2800000, guid: f181f46c15b4e0443b26fc08ae9afd33, type: 3}
+  - {fileID: 2800000, guid: 0d9f87b4784bbde4d9e7fbfb41ff9414, type: 3}
+  - {fileID: 2800000, guid: ec416ab7b8743ed47861864226b7f7fe, type: 3}
+  - {fileID: 2800000, guid: 6cd08cd3f40b4004e8dad28381303ca3, type: 3}
+  - {fileID: 2800000, guid: 6749e1f98faaae642b5ebe06209fc1e8, type: 3}
+  - {fileID: 2800000, guid: e3c18156d80f3d4448945bd39f73c853, type: 3}
+  blurMat: {fileID: 2100000, guid: 0ff06d8ab683783478e4164a6a3f9e1f, type: 2}
+  blurGeo: {fileID: 4292857513453309517}
 --- !u!1 &5944269033005628219
 GameObject:
   m_ObjectHideFlags: 0
@@ -6746,7 +6783,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7704883184636713585
 Transform:
   m_ObjectHideFlags: 0
@@ -8815,6 +8852,7 @@ GameObject:
   - component: {fileID: 2818232389657494708}
   - component: {fileID: 4287685258111963018}
   - component: {fileID: 2954088963424276382}
+  - component: {fileID: 5220597635407173415}
   m_Layer: 0
   m_Name: R22_GRP
   m_TagString: Untagged
@@ -8854,7 +8892,7 @@ Rigidbody:
   m_GameObject: {fileID: 8600365522126962317}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0.5
+  m_Drag: 1
   m_AngularDrag: 1
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -8919,6 +8957,19 @@ MonoBehaviour:
   engines:
   - {fileID: 1738670787361658087}
   rotors_Controller: {fileID: 6589002458504170077}
+--- !u!114 &5220597635407173415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8600365522126962317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00f442e8b102fce4290dae89e01c8667, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  main_Rotor: {fileID: 6443619179350773148}
 --- !u!1 &8745223604229377649
 GameObject:
   m_ObjectHideFlags: 0

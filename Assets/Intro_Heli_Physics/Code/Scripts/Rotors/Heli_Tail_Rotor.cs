@@ -8,10 +8,11 @@ public class Heli_Tail_Rotor : MonoBehaviour,IHeliRotor
     [SerializeField] private Transform lRotor;
     [SerializeField] private Transform rRotor;
     [SerializeField] private float maxPitch = 45f;
+    [SerializeField] private float rotationSpeedModifier = 1.5f;
 
     public void UpdateRotor(float dps, Input_Controllers input)
     {
-        transform.Rotate(Vector3.right, dps);
+        transform.Rotate(Vector3.right, dps * rotationSpeedModifier);
 
         if (lRotor && rRotor)
         {

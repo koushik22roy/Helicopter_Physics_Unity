@@ -16,10 +16,9 @@ public class Heli_Rotors_Controller : MonoBehaviour
 
     public void UpdateRotors(Input_Controllers input, float currentRPM)
     {
-        //degree per seconds 
-        float dps = ((currentRPM * 360) / 60)*Time.deltaTime;
+        float dps = ((currentRPM * 360f) / 60f) * Time.deltaTime;
 
-        if(rotors.Count > 0)
+        if (rotors.Count > 0)
         {
             foreach(var rotor in rotors)
             {

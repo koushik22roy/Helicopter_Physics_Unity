@@ -5,7 +5,7 @@ using UnityEngine;
 public class Heli_Engine : MonoBehaviour
 {
     #region variable
-    [SerializeField] private float maxHP = 130f;    // max horse power
+    [SerializeField] private float maxHP = 140f;    // max horse power
     [SerializeField] private float maxRPM = 2700f;  // max revolution per minute
     [SerializeField] private float powerDelay = 2f;
 
@@ -17,6 +17,11 @@ public class Heli_Engine : MonoBehaviour
     public float CurrentHP { get { return currentHP; } private set { } }
     private float currentRPM;
     public float CurrentRPM { get { return currentRPM; } private set { } }
+    private float _normalizedRPM;
+    public float NormalizedRPM
+    {
+        get { return _normalizedRPM; }
+    }
     #endregion
 
 
@@ -31,6 +36,9 @@ public class Heli_Engine : MonoBehaviour
         //calculate rpm
         float rpm = throttleInput * maxRPM;
         currentRPM = Mathf.Lerp(currentRPM, rpm, Time.deltaTime * powerDelay);
+        _normalizedRPM = Mathf.InverseLerp(0f, maxRPM, currentRPM);
+
+        //Debug.Log("current RPM :" + currentRPM);
     }
     #endregion
 }

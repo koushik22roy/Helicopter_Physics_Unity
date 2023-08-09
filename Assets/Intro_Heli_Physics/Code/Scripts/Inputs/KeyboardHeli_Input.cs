@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class KeyboardHeli_Input : BaseHeli_Input
@@ -21,7 +19,9 @@ public class KeyboardHeli_Input : BaseHeli_Input
 
 
     private float stickyThrottle;
-    public float StickyThrottle { get { return stickyThrottle; } private set { } }
+    public float StickyThrottleInput { get { return stickyThrottle; } private set { } }
+    private float stickyCollective;
+    public float StickyCollectiveleInput { get { return stickyCollective; } private set { } }
     #endregion
 
     protected override void HandleInput()
@@ -32,16 +32,22 @@ public class KeyboardHeli_Input : BaseHeli_Input
         HandleCollective();
         HandleCyclic();
         HandlePedal();
+        HandleStickyThrottle();
+        HandleStickyCollective();
     }
 
     private void HandleThrottle() 
     {
         throttleInput = ThrottleInputValue();
+        //throttleInput = Mathf.Clamp01(throttleInput);
+        //Debug.Log("Throtle INput : " + throttleInput);
         
     }
     private void HandleCollective() 
     {
         collectiveInput = CollectiveInputValue();
+        //collectiveInput = Mathf.Clamp01(collectiveInput);
+        //Debug.Log("Collective Input : " + collectiveInput);
     }
     private void HandleCyclic() 
     {
@@ -55,11 +61,18 @@ public class KeyboardHeli_Input : BaseHeli_Input
 
 
     ////utility function 
-    //private void HandleStickyThrottle()
-    //{
-    //    stickyThrottle += throttleInput;
-    //    Mathf.Clamp01(stickyThrottle);
+    private void HandleStickyThrottle()
+    {
+        stickyThrottle += throttleInput * (Time.deltaTime);
+        stickyThrottle = Mathf.Clamp01(stickyThrottle);
+        //Debug.Log("Sticky Throtle: "+stickyThrottle);
+    }
 
-    //    Debug.Log("Sticky Throttle" + stickyThrottle);
-    //}
+    private void HandleStickyCollective()
+    {
+        stickyCollective += collectiveInput * Time.deltaTime;
+        stickyCollective = Mathf.Clamp01(stickyCollective);
+
+        //Debug.Log("Sticky Throtle: "+stickyCollective);
+    }
 }

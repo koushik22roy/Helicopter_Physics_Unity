@@ -17,7 +17,8 @@ public class Input_Controllers : MonoBehaviour
     private float collectiveInput;
     private Vector2 cyclicInput;
     private float pedalInput;
-
+    private float stickyThrottle;
+    private float stickyCollective;
     private KeyboardHeli_Input keyInput;
     #endregion
 
@@ -26,6 +27,9 @@ public class Input_Controllers : MonoBehaviour
     public float CollectiveInput { get { return collectiveInput; } private set { } }
     public Vector2 CyclicInput { get { return cyclicInput; } private set { } }
     public float PedalInput { get { return pedalInput; } private set { } }
+
+    public float StickyThrottle { get { return stickyThrottle; } private set { } }
+    public float StickyCollective { get { return stickyCollective; } private set { } }
     #endregion
 
     private void Start()
@@ -42,7 +46,8 @@ public class Input_Controllers : MonoBehaviour
                 collectiveInput = keyInput.CollectiveInput;
                 cyclicInput = keyInput.CyclicInput;
                 pedalInput = keyInput.PedalInput;
-
+                stickyThrottle = keyInput.StickyThrottleInput;
+                stickyCollective = keyInput.StickyCollectiveleInput;
                 break;
         }
     }
