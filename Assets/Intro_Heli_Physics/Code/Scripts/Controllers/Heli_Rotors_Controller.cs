@@ -11,18 +11,18 @@ public class Heli_Rotors_Controller : MonoBehaviour
 
     private void Start()
     {
-        rotors = new List<IHeliRotor>(GetComponentsInChildren<IHeliRotor>());
+        rotors = GetComponentsInChildren<IHeliRotor>().ToList();
     }
 
-    public void UpdateRotors(Input_Controllers input, float currentRPM)
+    public void UpdateRotors(Input_Controllers inputController, float currentRPM)
     {
-        float dps = ((currentRPM * 360f) / 60f) * Time.deltaTime;
+        float dps = ((currentRPM * 360f) / 60f);
 
         if (rotors.Count > 0)
         {
             foreach(var rotor in rotors)
             {
-                rotor.UpdateRotor(dps,input);
+                rotor.UpdateRotor(dps,inputController);
             }
         }
     }

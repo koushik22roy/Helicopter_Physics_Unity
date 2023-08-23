@@ -11,6 +11,9 @@ public class KeyboardHeli_Input : BaseHeli_Input
     [HideInInspector][SerializeField] private float pedalInput = 0f;
     #endregion
 
+    [Header("Camera Properties")]
+    private KeyCode camButton;
+
     #region Properties
     public float ThrottleInput { get { return throttleInput; } private set { } }
     public float CollectiveInput { get { return collectiveInput; } private set { } }
@@ -22,6 +25,9 @@ public class KeyboardHeli_Input : BaseHeli_Input
     public float StickyThrottleInput { get { return stickyThrottle; } private set { } }
     private float stickyCollective;
     public float StickyCollectiveleInput { get { return stickyCollective; } private set { } }
+    
+    protected bool camInput = false;
+    public bool CamInput { get { return camInput; } private set { } }
     #endregion
 
     protected override void HandleInput()
@@ -32,6 +38,8 @@ public class KeyboardHeli_Input : BaseHeli_Input
         HandleCollective();
         HandleCyclic();
         HandlePedal();
+        HandleCamButton();
+
         HandleStickyThrottle();
         HandleStickyCollective();
     }
@@ -39,15 +47,10 @@ public class KeyboardHeli_Input : BaseHeli_Input
     private void HandleThrottle() 
     {
         throttleInput = ThrottleInputValue();
-        //throttleInput = Mathf.Clamp01(throttleInput);
-        //Debug.Log("Throtle INput : " + throttleInput);
-        
     }
     private void HandleCollective() 
     {
         collectiveInput = CollectiveInputValue();
-        //collectiveInput = Mathf.Clamp01(collectiveInput);
-        //Debug.Log("Collective Input : " + collectiveInput);
     }
     private void HandleCyclic() 
     {
@@ -58,6 +61,10 @@ public class KeyboardHeli_Input : BaseHeli_Input
     {
         pedalInput = PedalInputValue();
     }
+    private void HandleCamButton()
+    {
+        camInput = CameraSwitchBoolValue();
+    }
 
 
     ////utility function 
@@ -65,14 +72,12 @@ public class KeyboardHeli_Input : BaseHeli_Input
     {
         stickyThrottle += throttleInput * (Time.deltaTime);
         stickyThrottle = Mathf.Clamp01(stickyThrottle);
-        //Debug.Log("Sticky Throtle: "+stickyThrottle);
     }
 
     private void HandleStickyCollective()
     {
         stickyCollective += collectiveInput * Time.deltaTime;
         stickyCollective = Mathf.Clamp01(stickyCollective);
-
-        //Debug.Log("Sticky Throtle: "+stickyCollective);
     }
+
 }

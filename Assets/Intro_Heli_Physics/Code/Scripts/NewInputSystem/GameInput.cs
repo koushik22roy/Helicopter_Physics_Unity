@@ -36,6 +36,11 @@ public class GameInput : MonoBehaviour
         return inputVector;
     }
 
+    public bool CameraSwitch()
+    {
+        return inputActions.Player.CameraSwitch.triggered;
+    }
+
     private void OnDisable()
     {
         inputActions.Player.Disable();

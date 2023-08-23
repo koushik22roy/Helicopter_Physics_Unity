@@ -5,7 +5,7 @@ using UnityEngine;
 public class Rotor_Blur : MonoBehaviour, IHeliRotor
 {
     [Header("Rotor Blur Properties")]
-    [SerializeField] private float maxDPS = 323f;
+    /*[SerializeField]*/ private float maxDPS = /*323f*/ 5400f;
     [SerializeField] private List<GameObject> blades = new List<GameObject>();
     [SerializeField] private GameObject blur;
     public List<Texture2D> blurTex = new List<Texture2D>();
@@ -18,7 +18,7 @@ public class Rotor_Blur : MonoBehaviour, IHeliRotor
     public void UpdateRotor(float dps, Input_Controllers input)
     {
         float normalizedDPS = Mathf.InverseLerp(0f, maxDPS, dps);
-        int blurTexId = Mathf.FloorToInt(normalizedDPS * blurTex.Count-1);
+        int blurTexId = Mathf.FloorToInt(normalizedDPS * blurTex.Count);
         //Debug.Log("Normalized " + normalizedDPS);
 
         blurTexId = Mathf.Clamp(blurTexId,0, blurTex.Count - 1);

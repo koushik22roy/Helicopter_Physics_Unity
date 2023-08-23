@@ -13,9 +13,14 @@ public class Heli_Controllers : Base_RbControllers
     [Header("Helicopter Rotor")]
     [SerializeField] private Heli_Rotors_Controller rotors_Controller;
 
-    private Input_Controllers input;
+    private Input_Controllers inputController;
     private Heli_Characteristics heli_Characteristics;
     #endregion
+
+    public List<Heli_Engine> Engines
+    {
+        get { return engines; }
+    }
 
     public override void Start()
     {
@@ -25,9 +30,9 @@ public class Heli_Controllers : Base_RbControllers
 
     protected override void HandlePhysics()
     {
-        input = GetComponent < Input_Controllers>();
-
-        if (input)
+        inputController = GetComponent <Input_Controllers>();
+        base.HandlePhysics();
+        if (inputController)
         {
             HandleEngine();
             HandleRotors();
@@ -37,35 +42,24 @@ public class Heli_Controllers : Base_RbControllers
 
     protected virtual void HandleEngine() 
     { 
-        //foreach(var engine in engines)
-        //{
-        //    engine.UpdateEngine(input.ThrottleInput);
-
-        //    //float finalPower = engine.CurrentHP;
-        //}
-
         for(int i = 0; i < engines.Count; i++)
         {
-            engines[i].UpdateEngine(input.StickyThrottle);
-            //Debug.Log("STICKY THROTTLE " + input.StickyThrottle);
+            engines[i].UpdateEngine(inputController.StickyThrottle);
             float finalPower = engines[i].CurrentHP;
-
-            //Debug.Log("Final Power"+finalPower);
         }
     }
     protected virtual void HandleRotors() 
     {
         if (rotors_Controller && engines.Count>0)
         {
-            rotors_Controller.UpdateRotors(input, engines[0].CurrentRPM);
-            //Debug.LogError("Current RPM" + engines[0].CurrentRPM);
+            rotors_Controller.UpdateRotors(inputController, engines[0].CurrentRPM);
         }
     }
     protected virtual void HandleCharacteristics() 
     {
         if (heli_Characteristics)
         {
-            heli_Characteristics.UpdateCharacteristics(rb,input);
+            heli_Characteristics.UpdateCharacteristics(rb,inputController);
         }
     }
 }

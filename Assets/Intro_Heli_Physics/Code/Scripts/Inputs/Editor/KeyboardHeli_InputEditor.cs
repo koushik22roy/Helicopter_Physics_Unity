@@ -30,6 +30,7 @@ public class KeyboardHeli_InputEditor : Editor
         EditorGUILayout.LabelField("Collective: " + keyboardHeli_Input.CollectiveInput);
         EditorGUILayout.LabelField("Cyclic: " + keyboardHeli_Input.CyclicInput);
         EditorGUILayout.LabelField("Pedals: " + keyboardHeli_Input.PedalInput);
+        EditorGUILayout.LabelField("Camera Switch: " + keyboardHeli_Input.CamInput);
         EditorGUI.indentLevel--;
         EditorGUILayout.Space();
         EditorGUILayout.EndVertical();

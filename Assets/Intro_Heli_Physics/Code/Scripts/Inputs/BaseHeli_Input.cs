@@ -10,6 +10,7 @@ public class BaseHeli_Input : MonoBehaviour
     private float throttle;
     private float collective;
     private float pedal;
+    private bool cam;
     #endregion
 
     [SerializeField] private GameInput gameInput;
@@ -49,6 +50,11 @@ public class BaseHeli_Input : MonoBehaviour
     {
         pedal = gameInput.GetPedalVectorNormalized().x;
         return pedal;
+    }
+
+    protected bool CameraSwitchBoolValue()
+    {
+        return cam = gameInput.CameraSwitch();
     }
 
     public GameInput GetGameInput()

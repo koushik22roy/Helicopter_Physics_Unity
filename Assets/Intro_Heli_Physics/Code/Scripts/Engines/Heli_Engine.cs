@@ -9,7 +9,7 @@ public class Heli_Engine : MonoBehaviour
     [SerializeField] private float maxRPM = 2700f;  // max revolution per minute
     [SerializeField] private float powerDelay = 2f;
 
-    [SerializeField] private AnimationCurve powerCurve = new AnimationCurve(new Keyframe(0f,0f),new Keyframe(1f,1f));
+    [SerializeField] private AnimationCurve powerCurve = new(new Keyframe(0f,0f),new Keyframe(1f,1f));
     #endregion
 
     #region properties
@@ -22,6 +22,8 @@ public class Heli_Engine : MonoBehaviour
     {
         get { return _normalizedRPM; }
     }
+
+    public AnimationCurve PowerCurve { get => powerCurve; set => powerCurve = value; }
     #endregion
 
 
@@ -30,11 +32,11 @@ public class Heli_Engine : MonoBehaviour
     public void UpdateEngine(float throttleInput)
     {
         //calculate horse power
-        float hp = powerCurve.Evaluate(throttleInput) * maxHP;
+        float hp = PowerCurve.Evaluate(throttleInput) * maxHP;
         currentHP = Mathf.Lerp(currentHP, hp, Time.deltaTime * powerDelay);
 
         //calculate rpm
-        float rpm = throttleInput * maxRPM;
+        float rpm = PowerCurve.Evaluate(throttleInput) * maxRPM;
         currentRPM = Mathf.Lerp(currentRPM, rpm, Time.deltaTime * powerDelay);
         _normalizedRPM = Mathf.InverseLerp(0f, maxRPM, currentRPM);
 

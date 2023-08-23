@@ -8,7 +8,7 @@ public class Base_RbControllers : MonoBehaviour
 {
     #region variables
     [Header("Base Properties")]
-    public float weightInLbs = 10f;
+    public float weightInLbs = 1200f;
     public Transform cog; //center of gravity
 
     private const float lbsToKg = 0.454f;
@@ -17,13 +17,14 @@ public class Base_RbControllers : MonoBehaviour
     protected Rigidbody rb;
     protected float weight;
     #endregion
-
+    protected virtual void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
     public virtual void Start()
     {
         float finalKg = weightInLbs * lbsToKg;
         weight = finalKg;
-
-        rb = GetComponent<Rigidbody>();
         if (rb) { rb.mass = weight; }
     }
 
